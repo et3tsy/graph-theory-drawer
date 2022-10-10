@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/fabric.js/3.4.0/fabric.js"></script>
+    <script type="text/javascript" src="./vertex.js"></script>
+    <script type="text/javascript" src="./create.js"></script>
+    <script type="text/javascript" src="./fabric.js"></script>
+    <script type="text/javascript" src="./move.js"></script>
+    <script type="text/javascript" src="./link.js"></script>
+    <script type="text/javascript" src="./delete.js"></script>
+    <script type="text/javascript" src="./download.js"></script>
+
+
+    <style>
+        canvas {
+            border: 1px solid #ccc;
+        }
+    </style>
+</head>
+
+<body>
+    <input class="switch" name="VertexOn" type="radio" id="create" /> <b>Create</b>
+    <input class="switch" name="VertexOn" type="radio" id="link" /> <b>Link</b>
+    <input class="switch" name="VertexOn" type="radio" id="delete" /> <b>Delete</b> <br>
+
+    <input class="switch" checked name="VertexType" type="radio" id="green" />Green <br>
+    <input class="switch" name="VertexType" type="radio" id="yellow" /> Yellow <br>
+    <input class="switch" name="VertexType" type="radio" id="red" /> red <br>
+
+    <canvas id="c" width="600" height="300"></canvas> <br>
+
+    <button id="download">导出</button>
+</body>
+
+<script>
+    var canvas = new fabric.Canvas('c');    // the object of canvas
+    var VertexColor = 'green';              // the color of vertexs
+    var VertexRadius = 15;                  // the radius of vertexs
+    var padding = 10;                       // the padding to prevent objects to reach the edge of the canvas
+    var startVertex = null;                 // when linking two vertexs, record the first one
+    var VertexArr = [];                     // the vertex array, recording what indexs are used
+
+    // the default format of a vertex
+    var defaultVertex = {
+        radius: VertexRadius,
+        originX: 'center',
+        originY: 'center',
+        stroke: 'yellow',
+        hasControls: false,
+    };
+
+    // the default format of an edge
+    var defaultLine = {
+        strokeWidth: 5,
+        fill: '#000000',
+        stroke: '#39ff14',
+        originX: 'center',
+        originY: 'center',
+        selectable: false,
+        hasControls: false,
+        hasBorders: false,
+        evented: false,
+        targetFindTolerance: true,
+    };
+
+    document.getElementById("create").checked = true;
+    document.getElementById("green").checked = true;
+
+    fabricInit();
+    createInit();
+    moveInit();
+    linkInit();
+    deleteInit();
+    downloadInit();
+
+    // set Vertex type
+    $(".switch").click(function () {
+        if (document.getElementById("green").checked == true) {
+            setColor('green');
+        } else if (document.getElementById("yellow").checked == true) {
+            setColor('yellow');
+        } else if (document.getElementById("red").checked == true) {
+            setColor('red');
+        }
+    });
+</script>
+
+</html>
