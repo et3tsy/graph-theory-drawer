@@ -3,17 +3,28 @@ function addVertex(x, y, color) {
     if (document.getElementById("create").checked != true) {
         return;
     }
-    var Vertex = new fabric.Circle(defaultVertex);
+
     var idx = getVertexArrUnusedIndex();
     insertVertexArr(idx);
 
+    // create a vertex
+    var Vertex = new fabric.Circle(defaultVertex);
     Vertex.setColor(color);
-    Vertex.left = x;
-    Vertex.top = y;
-    Vertex.name = "vertex" + idx;
-    Vertex.from = [];
-    Vertex.to = [];
-    canvas.add(Vertex);
+
+    // create the related context
+    var Content = new fabric.Text('' + idx, defaultContext);
+
+    // group them
+    var group = new fabric.Group([Vertex, Content], {
+        left: x,
+        top: y,
+    });
+    group.from = [];
+    group.to = [];
+    group.name = "vertex" + idx;
+    group.isVertex = true;
+
+    canvas.add(group);
     canvas.renderAll();
 }
 
@@ -30,6 +41,6 @@ function createInit() {
         if (e.target) {
             return
         }
-        addVertex(e.e.x - 10, e.e.y - 100, VertexColor);
+        addVertex(e.e.x - 20, e.e.y - 100, VertexColor);
     });
 }

@@ -17,7 +17,7 @@ function fabricInit() {
     fabric.Canvas.prototype.removeLine = function (line) {
         var objects = this.getObjects();
         objects.forEach((vertex) => {
-            if (vertex.type === 'circle') {
+            if (vertex.isVertex === true) {
                 vertex.to.forEach((item, idx) => {
                     if (item === line) {
                         vertex.to.splice(idx, 1);

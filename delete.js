@@ -31,6 +31,7 @@ function deleteInit() {
             canvas.remove(item);
         })
 
+        console.log(e.target);
         removeVertexArrByName(e.target.name);
         canvas.remove(e.target);
         canvas.renderAll();

@@ -2,7 +2,7 @@
 // between the mouse pointer and the start vertex
 function createFocusLine() {
     var pointer = canvas.getActiveObject();
-    var points = [pointer.left, pointer.top, pointer.left, pointer.top];
+    var points = [pointer.left + VertexRadius, pointer.top + VertexRadius, pointer.left + VertexRadius, pointer.top + VertexRadius];
 
     lineFocus = new fabric.Line(points, {
         strokeWidth: 5,
@@ -62,8 +62,8 @@ function moveInit() {
 
         // when mouse touches an object, fix the end of the line to the center
         if (o.target !== null) {
-            var x2 = o.target.left;
-            var y2 = o.target.top;
+            var x2 = o.target.left + VertexRadius;
+            var y2 = o.target.top + VertexRadius;
             lineFocus.set({
                 x2: x2,
                 y2: y2

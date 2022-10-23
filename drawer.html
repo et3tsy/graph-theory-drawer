@@ -40,7 +40,7 @@
 <script>
     var canvas = new fabric.Canvas('c');    // the object of canvas
     var VertexColor = 'green';              // the color of vertexs
-    var VertexRadius = 15;                  // the radius of vertexs
+    var VertexRadius = 16;                  // the radius of vertexs
     var padding = 10;                       // the padding to prevent objects to reach the edge of the canvas
     var startVertex = null;                 // when linking two vertexs, record the first one
     var VertexArr = [];                     // the vertex array, recording what indexs are used
@@ -51,8 +51,20 @@
         originX: 'center',
         originY: 'center',
         stroke: 'yellow',
+
         hasControls: false,
+        text: 'haha',
+        fill: 'yellow'
     };
+
+    // the default format of related context on the vertex
+    var defaultContext = {
+        fontSize: 15,
+        originX: 'center',
+        originY: 'center',
+        textAlign: 'center',
+        fontWeight: 'bold',
+    }
 
     // the default format of an edge
     var defaultLine = {
