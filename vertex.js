@@ -1,21 +1,29 @@
 // in create mode, return the biggest index number unused
 function getVertexArrUnusedIndex() {
     var x = 0;
-    VertexArr.forEach((item) => {
-        if (x == item) x++;
-    })
+    for (var i = 0; i < VertexArr.length; i++) {
+        if (x == VertexArr[i]) {
+            x++;
+        }
+        else {
+            break;
+        }
+    }
     return x;
 }
 
 // insert the new index number into VertexArr
 function insertVertexArr(val) {
     var index = 0;
-    VertexArr.forEach((item, idx) => {
-        if (item < val) {
-            index = idx;
+    for (; index < VertexArr.length; index++) {
+        if (val < VertexArr[index]) {
+            VertexArr.splice(index, 0, val);
+            break;
         }
-    });
-    VertexArr.splice(index + 1, 0, val);
+    }
+    if (index === VertexArr.length) {
+        VertexArr.push(index);
+    }
 }
 
 // remove the new index number into VertexArr
