@@ -18,7 +18,11 @@ function addVertex(x, y, color) {
     var group = new fabric.Group([Vertex, Content], {
         left: x,
         top: y,
+        hasControls: false,
+        hasBorders: false
     });
+
+    // to save edges
     group.from = [];
     group.to = [];
     group.name = "vertex" + idx;
@@ -41,6 +45,6 @@ function createInit() {
         if (e.target) {
             return
         }
-        addVertex(e.e.x - 20, e.e.y - 100, VertexColor);
+        addVertex(e.e.x - 30, e.e.y - 90, VertexColor);
     });
 }

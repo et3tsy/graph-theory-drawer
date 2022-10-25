@@ -29,7 +29,7 @@ function linkInit() {
         var to = toObject.getCenterPoint();
 
         if (from.x != to.x || from.y != to.y) {
-            var line = new fabric.Line([from.x, from.y, to.x, to.y], defaultLine);
+            var line = new fabric.Edge([from.x, from.y, to.x, to.y], defaultLine);
             canvas.add(line);
             fromObject.from.push(line);
             toObject.to.push(line);
