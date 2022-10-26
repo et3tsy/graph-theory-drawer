@@ -90,6 +90,7 @@
     deleteInit();
     downloadInit();
 
+    // set color for vertexs or edges
     function updateColor() {
         if (document.getElementById("create").checked) {
             VertexColor = $('#colorPicker').val();
@@ -99,6 +100,12 @@
             defaultLine.stroke = $('#colorPicker').val();
         }
     }
+
+    // change whether edges have arrows
+    $("#directChange").click(function () {
+        isDirect = 1 - isDirect;
+        canvas.renderAll();
+    });
 
 </script>
 
