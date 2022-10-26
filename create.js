@@ -38,6 +38,10 @@ function createInit() {
         canvas.discardActiveObject();
         canvas.remove(canvas.getObjectByName('lineFocus'));
         startVertex = null;
+
+        // set default color
+        document.querySelector('#colorPicker').jscolor.fromString('ffffff');
+        VertexColor = '#ffffff';
     });
 
     // if not click on existing objects, create a new vertex 

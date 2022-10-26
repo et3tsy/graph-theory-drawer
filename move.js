@@ -7,8 +7,8 @@ function createFocusLine() {
     lineFocus = new fabric.Line(points, {
         strokeWidth: 5,
         opacity: 0.1,
-        fill: '#39ff14',
-        stroke: '#39ff14',
+        fill: '#313131',
+        stroke: '#313131',
         originX: 'center',
         originY: 'center',
         selectable: false,

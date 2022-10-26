@@ -2,6 +2,10 @@ function linkInit() {
     // initial link mode
     $("#link").click(function () {
         canvas.discardActiveObject();
+
+        // set default color
+        defaultLine.stroke = '#000000';
+        document.querySelector('#colorPicker').jscolor.fromString('000000');
     });
 
     // linking two vertexs, when the first one is chosen,

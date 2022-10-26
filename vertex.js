@@ -45,9 +45,3 @@ function copyArr(arr) {
     });
     return ret
 }
-
-// set vertex's color
-function setColor(color) {
-    VertexColor = color;
-    canvas.renderAll();
-}

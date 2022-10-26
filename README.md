@@ -3,19 +3,29 @@
 
 
 
-### jQuery
+### jQuery 
 
 https://www.runoob.com/jquery/jquery-tutorial.html
 
 
 
-### fabric.js
+### fabric.js 画布
 
 fabric.js: http://fabricjs.com/articles/
 
 
 
-### 语法糖 prototype
+### jscolor 拾色器
+
+jscolor: https://jscolor.com/examples/
+
+
+
+
+### 语法糖 
+
+#### prototype
 
 use prototype to create a new function (https://www.runoob.com/js/js-object-prototype.html)
-……
+
+...
