@@ -22,20 +22,31 @@ function insertVertexArr(val) {
         }
     }
     if (index === VertexArr.length) {
-        VertexArr.push(index);
+        VertexArr.push(val);
     }
 }
 
 // remove the new index number into VertexArr
 function removeVertexArrByName(str) {
-    val = parseInt(str.substring(6));
-    VertexArr.forEach((item, idx) => {
-        if (item == val) {
-            VertexArr.splice(idx, 1);
+    var val = parseInt(str.substring(6));
+    for (var i = 0; i < VertexArr.length; i++) {
+        if (VertexArr[i] == val) {
+            VertexArr.splice(i, 1);
             return;
         }
-    })
+    }
 }
+
+// check if val exists in the VertexArr
+function findVertexArrByName(val) {
+    for (var i = 0; i < VertexArr.length; i++) {
+        if (VertexArr[i] == val) {
+            return true;
+        }
+    }
+    return false;
+}
+
 
 // get a copy of an array
 function copyArr(arr) {

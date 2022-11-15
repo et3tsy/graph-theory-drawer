@@ -13,6 +13,37 @@ function fabricInit() {
         return object;
     };
 
+    // to remove a vertex
+    fabric.Canvas.prototype.removeVertex = function (target) {
+        if (target === null) {
+            return
+        }
+
+        var toArr = copyArr(target.to);
+        var fromArr = copyArr(target.from);
+
+        // remove the edge records saved in each vertex
+        toArr.forEach((item) => {
+            canvas.removeLine(item);
+        })
+        fromArr.forEach((item) => {
+            canvas.removeLine(item);
+        })
+
+        // remove relevant objects on the canvas
+        toArr.forEach((item) => {
+            canvas.remove(item);
+        })
+        fromArr.forEach((item) => {
+            canvas.remove(item);
+        })
+
+        removeVertexArrByName(target.name);
+        canvas.remove(target);
+        canvas.renderAll();
+    }
+
+
     // to remove line references when the line gets removed
     fabric.Canvas.prototype.removeLine = function (line) {
         var objects = this.getObjects();

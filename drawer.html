@@ -16,6 +16,7 @@
     <script type="text/javascript" src="./delete.js"></script>
     <script type="text/javascript" src="./download.js"></script>
     <script type="text/javascript" src="./edge.js"></script>
+    <script type="text/javascript" src="./input.js"></script>
 
 
     <style>
@@ -30,21 +31,26 @@
     <input class="switch" name="VertexOn" type="radio" id="link" /> <b>Link</b>
     <input class="switch" name="VertexOn" type="radio" id="delete" /> <b>Delete</b> <br>
     <input id="colorPicker" class="jscolor {onFineChange:'updateColor()'}"></input><br>
-    <button id="directChange">direct/undirect edges</button><br>
+    <button id="directChange">direct/undirect edges</button><button id="download">导出</button><br>
+    <canvas id="c" width=600 height=300></canvas> <br>
+    <div>
+        <textarea rows="10" cols="75" id="GraphData"></textarea>
+    </div>
 
-    <canvas id="c" width="600" height="300"></canvas> <br>
-
-    <button id="download">导出</button>
 </body>
 
 <script>
-    var canvas = new fabric.Canvas('c');    // the object of canvas
+
     var VertexColor = '#ffffff';            // the color of vertexs
     var VertexRadius = 16;                  // the radius of vertexs
     var padding = 10;                       // the padding to prevent objects to reach the edge of the canvas
     var startVertex = null;                 // when linking two vertexs, record the first one
     var VertexArr = [];                     // the vertex array, recording what indexs are used
-    var isDirect = 1;                       // if true, edges have arrows, representing direct edges 
+    var isDirect = 1;                       // if true, edges have arrows, representing direct edges
+
+    var canvasWidth = 600;                                                                // the width of canvas
+    var canvasHeight = 300;                                                               // the height of canvas
+    var canvas = new fabric.Canvas('c', { width: canvasWidth, height: canvasHeight });    // the object of canvas
 
     // the default format of a vertex
     var defaultVertex = {
@@ -89,6 +95,7 @@
     linkInit();
     deleteInit();
     downloadInit();
+    inputInit();
 
     // set color for vertexs or edges
     function updateColor() {
