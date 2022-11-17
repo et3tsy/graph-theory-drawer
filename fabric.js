@@ -38,7 +38,6 @@ function fabricInit() {
             canvas.remove(item);
         })
 
-        removeVertexArrByName(target.name);
         canvas.remove(target);
         canvas.renderAll();
     }
@@ -62,4 +61,54 @@ function fabricInit() {
             }
         });
     }
+
+    // create a new vertex
+    fabric.Canvas.prototype.addVertex = function (x, y, color, idx) {
+        if (idx === null) return;
+
+        // create a vertex
+        var Vertex = new fabric.Circle(defaultVertex);
+        Vertex.setColor(color);
+
+        // create the related context
+        var Content = new fabric.Text('' + idx, defaultContext);
+
+        // group them
+        var group = new fabric.Group([Vertex, Content], {
+            left: x,
+            top: y,
+            hasControls: false,
+            hasBorders: false
+        });
+
+        // to save edges
+        group.from = [];
+        group.to = [];
+        group.name = "vertex" + idx;
+        group.isVertex = true;
+
+        canvas.add(group);
+        canvas.renderAll();
+    }
+
+    // add the line, directed from fromObject to toObject
+    fabric.Canvas.prototype.AddLine = function (fromObject, toObject) {
+        var from = fromObject.getCenterPoint();
+        var to = toObject.getCenterPoint();
+
+        if (from.x != to.x || from.y != to.y) {
+            var line = new fabric.Edge([from.x, from.y, to.x, to.y], defaultLine);
+            line.name = "edge" + fromObject.name + toObject.name;
+
+            canvas.add(line);
+            fromObject.from.push(line);
+            toObject.to.push(line);
+
+            // sendToBack() is used to get an object to the bottom
+            line.sendToBack();
+        }
+        startVertex = null;
+        canvas.discardActiveObject();
+    }
+
 }

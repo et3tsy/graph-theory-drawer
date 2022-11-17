@@ -1,16 +1,11 @@
 function inputInit() {
-    var oldVertex = [];
-    var oldEdge = [];
-
     // clear the input
     $("#GraphData").val('');
 
     // delete the old vertexs
     function delOldVertex(vertexDel) {
-        console.log(vertexDel);
-
         for (var i = 0; i < vertexDel.length; i++) {
-            canvas.removeVertex(canvas.getObjectByName('vertex' + vertexDel[i][0]));
+            canvas.removeVertex(canvas.getObjectByName('vertex' + vertexDel[i]));
         }
     }
 
@@ -18,46 +13,58 @@ function inputInit() {
     function addNewVertex(vertexAdd) {
         for (var i = 0; i < vertexAdd.length; i++) {
             var arg = getRandomPosition();
-            addVertex(arg[0], arg[1], VertexColor, vertexAdd[i][0]);
+            canvas.addVertex(arg[0], arg[1], VertexColor, vertexAdd[i]);
         }
     }
 
     // delete the old edges
     function delOldEdge(edgeDel) {
-        // for (var i = 0; i < edgeDel.length; i++) {
-        //     //var from
-        //     var item = canvas.getObjectByName(edgeDel[i]);
+        for (var i = 0; i < edgeDel.length; i++) {
+            //var from
+            var line = canvas.getObjectByName('edge' + 'vertex' + edgeDel[i][0] + 'vertex' + edgeDel[i][1]);
 
-        //     canvas.removeLine(item);
-        //     canvas.remove(item);
-        // }
+            if (line !== null) {
+                canvas.removeLine(line);
+                canvas.remove(line);
+            }
+        }
+    }
+
+    // add the new edges
+    function addNewEdge(edgeAdd) {
+        for (var i = 0; i < edgeAdd.length; i++) {
+            var obj1 = canvas.getObjectByName('vertex' + edgeAdd[i][0]);
+            var obj2 = canvas.getObjectByName('vertex' + edgeAdd[i][1]);
+            canvas.AddLine(obj1, obj2);
+        }
     }
 
     // figure out what lines are edited -- the vertexs deleted, the vertexs added, the edges deleted, and the edges added
     function renewArr(newVertex, newEdge) {
+        console.log(newVertex, newEdge)
         var vertexDel = [];
         var vertexAdd = [];
         var edgeDel = [];
         var edgeAdd = [];
 
+        // since increasing order, we use two pointers to figure out what has changed
         var i = 0;
         var j = 0;
 
-
         // check vertexs
-        for (; i < oldVertex.length && j < newVertex.length;) {
-            if (oldVertex[i][0] == newVertex[j][0]) {
+        for (; i < VertexArr.length && j < newVertex.length;) {
+            if (VertexArr[i] == newVertex[j]) {
                 i++;
                 j++;
-            } else if (oldVertex[i][0] < newVertex[j][0]) {
-                vertexDel.push(oldVertex[i]);
+            } else if (VertexArr[i] < newVertex[j]) {
+                vertexDel.push(VertexArr[i]);
                 i++;
             } else {
                 vertexAdd.push(newVertex[j]);
                 j++;
             }
         }
-        vertexDel = vertexDel.concat(oldVertex.slice(i));
+        vertexDel = vertexDel.concat(VertexArr.slice(i));
         vertexAdd = vertexAdd.concat(newVertex.slice(j));
 
         // check edges
@@ -69,38 +76,40 @@ function inputInit() {
             }
             return 0;
         }
-        for (; i < oldEdge.length && j < newEdge.length;) {
-            if (cmp(oldEdge[i], newEdge[j]) === 0) {
+        for (; i < EdgeArr.length && j < newEdge.length;) {
+            if (cmp(EdgeArr[i], newEdge[j]) === 0) {
                 i++;
                 j++;
-            } else if (cmp(oldEdge[i], newEdge[j]) === -1) {
-                edgeDel.push(oldEdge[i]);
+            } else if (cmp(EdgeArr[i], newEdge[j]) === -1) {
+                edgeDel.push(EdgeArr[i]);
                 i++;
             } else {
                 edgeAdd.push(newEdge[j]);
                 j++;
             }
         }
-        edgeDel = edgeDel.concat(oldEdge.slice(i));
+        edgeDel = edgeDel.concat(EdgeArr.slice(i));
         edgeAdd = edgeAdd.concat(newEdge.slice(j));
 
-        oldVertex = newVertex;
-        oldEdge = newEdge;
+        // renew the VertexArr and EdgeArr
+        VertexArr = newVertex;
+        EdgeArr = newEdge;
 
+        // update modification on the canvas
         delOldVertex(vertexDel);
         addNewVertex(vertexAdd);
         delOldEdge(edgeDel);
-
+        addNewEdge(edgeAdd);
     }
 
     // refresh the data saved in the arr into the input
     function refresh() {
         var str = '';
-        for (var i = 0; i < oldVertex.length; i++) {
-            str += oldVertex[i] + '\n';
+        for (var i = 0; i < VertexArr.length; i++) {
+            str += VertexArr[i] + '\n';
         }
-        for (var i = 0; i < oldEdge.length; i++) {
-            str += oldEdge[i][0] + ' ' + oldEdge[i][1] + '\n';
+        for (var i = 0; i < EdgeArr.length; i++) {
+            str += EdgeArr[i][0] + ' ' + EdgeArr[i][1] + '\n';
         }
         $("#GraphData").val(str);
     }
@@ -151,7 +160,7 @@ function inputInit() {
         var newEdge = [];
         for (var i = 0; i < arr.length; i++) {
             if (arr[i].length == 1) {
-                newVertex.push(arr[i]);
+                newVertex.push(arr[i][0]);
             } else {
                 newEdge.push(arr[i]);
             }
@@ -171,6 +180,17 @@ function inputInit() {
             return a[0] - b[0];
         })
 
+        // if some vertexs are not declared, auto-fix it  
+        for (var i = 0; i < newEdge.length; i++) {
+            for (var j = 0; j < 2; j++) {
+                var x = newEdge[i][j];
+                if (!findArrByName(newVertex, x)) {
+                    insertArr(newVertex, x);
+                }
+            }
+        }
+
+        // renew the grapgh and the input
         renewArr(newVertex, newEdge);
         refresh();
     });

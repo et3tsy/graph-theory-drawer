@@ -8,8 +8,7 @@ function linkInit() {
         document.querySelector('#colorPicker').jscolor.fromString('000000');
     });
 
-    // linking two vertexs, when the first one is chosen,
-    // activate the FocusLine
+    // when linking two vertexs, and the first one is chosen, activate the FocusLine
     canvas.on('mouse:up', function (e) {
         if (document.getElementById("link").checked != true || e.target === null) {
             return;
@@ -27,21 +26,6 @@ function linkInit() {
         canvas.remove(canvas.getObjectByName('lineFocus'));
 
         // add the line
-        var fromObject = startVertex;
-        var toObject = e.target;
-        var from = fromObject.getCenterPoint();
-        var to = toObject.getCenterPoint();
-
-        if (from.x != to.x || from.y != to.y) {
-            var line = new fabric.Edge([from.x, from.y, to.x, to.y], defaultLine);
-            canvas.add(line);
-            fromObject.from.push(line);
-            toObject.to.push(line);
-
-            // sendToBack() is used to get an object to the bottom
-            line.sendToBack();
-        }
-        startVertex = null;
-        canvas.discardActiveObject();
+        canvas.AddLine(startVertex, e.target);
     });
 }

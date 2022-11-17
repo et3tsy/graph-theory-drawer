@@ -12,17 +12,17 @@ function getVertexArrUnusedIndex() {
     return x;
 }
 
-// insert the new index number into VertexArr
-function insertVertexArr(val) {
+// insert the new index number into arr, to keep it increasing
+function insertArr(arr, val) {
     var index = 0;
-    for (; index < VertexArr.length; index++) {
-        if (val < VertexArr[index]) {
-            VertexArr.splice(index, 0, val);
+    for (; index < arr.length; index++) {
+        if (val < arr[index]) {
+            arr.splice(index, 0, val);
             break;
         }
     }
-    if (index === VertexArr.length) {
-        VertexArr.push(val);
+    if (index === arr.length) {
+        arr.push(val);
     }
 }
 
@@ -37,10 +37,10 @@ function removeVertexArrByName(str) {
     }
 }
 
-// check if val exists in the VertexArr
-function findVertexArrByName(val) {
-    for (var i = 0; i < VertexArr.length; i++) {
-        if (VertexArr[i] == val) {
+// check if val exists in the arr
+function findArrByName(arr, val) {
+    for (var i = 0; i < arr.length; i++) {
+        if (arr[i] == val) {
             return true;
         }
     }

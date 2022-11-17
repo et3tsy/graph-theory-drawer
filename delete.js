@@ -13,5 +13,6 @@ function deleteInit() {
             return;
         }
         canvas.removeVertex(e.target);
+        removeVertexArrByName(e.target.name);
     });
 }
