@@ -111,4 +111,16 @@ function fabricInit() {
         canvas.discardActiveObject();
     }
 
+    // refresh the data saved in graph (the VertexArr and the EdgeArr) into the input
+    fabric.Canvas.prototype.refresh = function () {
+        var str = '';
+        for (var i = 0; i < VertexArr.length; i++) {
+            str += VertexArr[i] + '\n';
+        }
+        for (var i = 0; i < EdgeArr.length; i++) {
+            str += EdgeArr[i][0] + ' ' + EdgeArr[i][1] + '\n';
+        }
+        $("#GraphData").val(str);
+    }
+
 }

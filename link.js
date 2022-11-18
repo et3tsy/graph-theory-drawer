@@ -26,6 +26,8 @@ function linkInit() {
         canvas.remove(canvas.getObjectByName('lineFocus'));
 
         // add the line
+        EdgeArr.push([parseInt(startVertex.name.substring(6)), parseInt(e.target.name.substring(6))])
+        canvas.refresh();
         canvas.AddLine(startVertex, e.target);
     });
 }

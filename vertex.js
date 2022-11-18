@@ -47,7 +47,6 @@ function findArrByName(arr, val) {
     return false;
 }
 
-
 // get a copy of an array
 function copyArr(arr) {
     let ret = []

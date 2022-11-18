@@ -45,11 +45,6 @@ function createInit() {
         var idx = getVertexArrUnusedIndex();
         insertArr(VertexArr, idx);
         canvas.addVertex(e.e.x - 30, e.e.y - 90, VertexColor, idx);
+        canvas.refresh();
     });
 }
-/*
-1 2
-3 4
-
-del mid 4
-*/

@@ -14,5 +14,14 @@ function deleteInit() {
         }
         canvas.removeVertex(e.target);
         removeVertexArrByName(e.target.name);
+        for (var i = 0; i < EdgeArr.length;) {
+            if (!findArrByName(VertexArr, EdgeArr[i][0]) || !findArrByName(VertexArr, EdgeArr[i][1])) {
+                EdgeArr.splice(i, 1);
+            } else {
+                i++
+            }
+
+        }
+        canvas.refresh();
     });
 }

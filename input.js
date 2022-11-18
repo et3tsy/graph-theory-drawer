@@ -41,7 +41,6 @@ function inputInit() {
 
     // figure out what lines are edited -- the vertexs deleted, the vertexs added, the edges deleted, and the edges added
     function renewArr(newVertex, newEdge) {
-        console.log(newVertex, newEdge)
         var vertexDel = [];
         var vertexAdd = [];
         var edgeDel = [];
@@ -102,21 +101,11 @@ function inputInit() {
         addNewEdge(edgeAdd);
     }
 
-    // refresh the data saved in the arr into the input
-    function refresh() {
-        var str = '';
-        for (var i = 0; i < VertexArr.length; i++) {
-            str += VertexArr[i] + '\n';
-        }
-        for (var i = 0; i < EdgeArr.length; i++) {
-            str += EdgeArr[i][0] + ' ' + EdgeArr[i][1] + '\n';
-        }
-        $("#GraphData").val(str);
-    }
-
-
     // when mouse move out of the input area, check if data is valid
     $("#GraphData").mouseleave(function () {
+        // to init graph in create mode
+        document.getElementById("create").checked = true;
+
         var str = $('#GraphData').val();
         var arrStr = str.split('\n');
         var arr = [];
@@ -127,8 +116,16 @@ function inputInit() {
                 continue;
             }
 
-            var tmp = arrStr[i].split(' ');
+            // ingore useless space
+            var t = arrStr[i].split(' ');
+            var tmp = [];
             var num = [];
+            for (var j = 0; j < t.length; j++) {
+                if (t[j] === "") {
+                    continue;
+                }
+                tmp.push(t[j]);
+            }
 
             // to check if any chars are not between '0' and '9'
             for (var j = 0; j < tmp.length; j++) {
@@ -192,7 +189,7 @@ function inputInit() {
 
         // renew the grapgh and the input
         renewArr(newVertex, newEdge);
-        refresh();
+        canvas.refresh();
     });
 }
 
