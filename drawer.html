@@ -52,6 +52,7 @@
     var canvasWidth = 600;                                                                // the width of canvas
     var canvasHeight = 300;                                                               // the height of canvas
     var canvas = new fabric.Canvas('c', { width: canvasWidth, height: canvasHeight });    // the object of canvas
+    canvas.selection = false                                                              // forbid selection
 
     // the default format of a vertex
     var defaultVertex = {
