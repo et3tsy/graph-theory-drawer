@@ -73,7 +73,10 @@ function inputInit() {
         // check edges
         i = j = 0;
         function cmp(a, b) {
-            for (var i = 0; i < 2; i++) {
+            if (a.length != b.length) {
+                return a.length - b.length;
+            }
+            for (var i = 0; i < a.length; i++) {
                 if (a[i] > b[i]) return 1;
                 if (a[i] < b[i]) return -1;
             }
