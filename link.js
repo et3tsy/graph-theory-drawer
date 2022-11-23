@@ -14,7 +14,7 @@ function linkInit() {
             return;
         }
 
-        // if the first vertex is selected
+        // if the first vertex isn't selected
         if (startVertex === null) {
             startVertex = canvas.getActiveObject();
             createFocusLine();

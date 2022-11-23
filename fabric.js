@@ -111,6 +111,42 @@ function fabricInit() {
         canvas.discardActiveObject();
     }
 
+    // add the line, directed from fromObject to toObject with weight
+    fabric.Canvas.prototype.AddWeightedLine = function (fromObject, toObject, weight) {
+        var from = fromObject.getCenterPoint();
+        var to = toObject.getCenterPoint();
+
+        if (from.x != to.x || from.y != to.y) {
+            var line = new fabric.Edge([from.x, from.y, to.x, to.y], defaultLine);
+            line.name = "edge" + fromObject.name + toObject.name;
+            
+            var Content = new fabric.Text('' + weight, defaultContext);
+            Content.set({
+                left: (from.x + to.x)/2 - weightPadding * (from.y - to.y) / Math.sqrt((from.x - to.x) * (from.x - to.x) + (from.y - to.y) * (from.y - to.y)),
+                top: (from.y + to.y)/2 + weightPadding * (from.x - to.x) / Math.sqrt((from.x - to.x) * (from.x - to.x) + (from.y - to.y) * (from.y - to.y))
+            })
+
+
+            var group = new fabric.Group([line, Content], {
+                hasControls: false,
+                hasBorders: false,
+                selectable: false,
+                evented: false,
+                targetFindTolerance: true
+            });
+            group.name = line.name + "weight" + weight;
+
+            canvas.add(group);
+            fromObject.from.push(group);
+            toObject.to.push(group);
+
+            // sendToBack() is used to get an object to the bottom
+            group.sendToBack();
+        }
+        startVertex = null;
+        canvas.discardActiveObject();
+    }
+
     // refresh the data saved in graph (the VertexArr and the EdgeArr) into the input
     fabric.Canvas.prototype.refresh = function () {
         var str = '';
@@ -118,7 +154,10 @@ function fabricInit() {
             str += VertexArr[i] + '\n';
         }
         for (var i = 0; i < EdgeArr.length; i++) {
-            str += EdgeArr[i][0] + ' ' + EdgeArr[i][1] + '\n';
+            if(EdgeArr[i].length == 2)
+                str += EdgeArr[i][0] + ' ' + EdgeArr[i][1] + '\n';
+            else
+                str += EdgeArr[i][0] + ' ' + EdgeArr[i][1] + ' ' + EdgeArr[i][2] + '\n';
         }
         $("#GraphData").val(str);
     }

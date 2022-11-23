@@ -35,7 +35,11 @@ function inputInit() {
         for (var i = 0; i < edgeAdd.length; i++) {
             var obj1 = canvas.getObjectByName('vertex' + edgeAdd[i][0]);
             var obj2 = canvas.getObjectByName('vertex' + edgeAdd[i][1]);
-            canvas.AddLine(obj1, obj2);
+            if(edgeAdd[i].length == 2)
+                canvas.AddLine(obj1, obj2);
+            else {
+                canvas.AddWeightedLine(obj1, obj2, edgeAdd[i][2]);
+            }
         }
     }
 
@@ -137,11 +141,11 @@ function inputInit() {
             }
 
             // to check if there are more than three integers in one line
-            if (tmp.length > 2) {
+            if (tmp.length > 3) {
                 alert("请检查数据 一行不能超过三个");
                 return;
             }
-            if (tmp.length == 2) {
+            if (tmp.length >= 2) {
                 flag = true;
             } else {
                 if (flag) {
@@ -171,10 +175,15 @@ function inputInit() {
             return a.length - b.length;
         });
         newEdge.sort(function (a, b) {
-            if (a[0] == b[0]) {
+            if (a[0] != b[0]) {
+                return a[0] - b[0];
+            } else if(a[1] != b[1]) {
                 return a[1] - b[1];
+            } else if(b.length != a.length) {
+                return a.length - b.length;
+            } else {
+                return 0;
             }
-            return a[0] - b[0];
         })
 
         // if some vertexs are not declared, auto-fix it  

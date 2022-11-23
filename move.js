@@ -85,17 +85,53 @@ function moveInit() {
 
         if (object.from)
             object.from.forEach(function (e) {
-                e.set({
-                    'x1': objectCenter.x,
-                    'y1': objectCenter.y
-                });
+                // when edge has weight
+                if(e.type === "group") {
+                    tmpEdge = e.getObjects("Edge")[0];
+                    tmpContent = e.getObjects("text")[0];
+                    e.remove(tmpEdge);
+                    e.remove(tmpContent);
+                    tmpEdge.set({
+                        'x1': objectCenter.x,
+                        'y1': objectCenter.y
+                    })
+                    tmpContent.set({
+                        left: (tmpEdge.x1 + tmpEdge.x2)/2 - weightPadding * (tmpEdge.y1 - tmpEdge.y2) / Math.sqrt((tmpEdge.x1 - tmpEdge.x2) * (tmpEdge.x1 - tmpEdge.x2) + (tmpEdge.y1 - tmpEdge.y2) * (tmpEdge.y1 - tmpEdge.y2)),
+                        top: (tmpEdge.y1 + tmpEdge.y2)/2 + weightPadding * (tmpEdge.x1 - tmpEdge.x2) / Math.sqrt((tmpEdge.x1 - tmpEdge.x2) * (tmpEdge.x1 - tmpEdge.x2) + (tmpEdge.y1 - tmpEdge.y2) * (tmpEdge.y1 - tmpEdge.y2))
+                    })
+                    e.addWithUpdate(tmpEdge);
+                    e.addWithUpdate(tmpContent);
+                } else {
+                    e.set({
+                        'x1': objectCenter.x,
+                        'y1': objectCenter.y
+                    });
+                }
             })
         if (object.to)
             object.to.forEach(function (e) {
-                e.set({
-                    'x2': objectCenter.x,
-                    'y2': objectCenter.y
-                });
+                // when edge has weight
+                if(e.type === "group") {
+                    tmpEdge = e.getObjects("Edge")[0];
+                    tmpContent = e.getObjects("text")[0];
+                    e.remove(tmpEdge);
+                    e.remove(tmpContent);
+                    tmpEdge.set({
+                        'x2': objectCenter.x,
+                        'y2': objectCenter.y
+                    })
+                    tmpContent.set({
+                        left: (tmpEdge.x1 + tmpEdge.x2)/2 - weightPadding * (tmpEdge.y1 - tmpEdge.y2) / Math.sqrt((tmpEdge.x1 - tmpEdge.x2) * (tmpEdge.x1 - tmpEdge.x2) + (tmpEdge.y1 - tmpEdge.y2) * (tmpEdge.y1 - tmpEdge.y2)),
+                        top: (tmpEdge.y1 + tmpEdge.y2)/2 + weightPadding * (tmpEdge.x1 - tmpEdge.x2) / Math.sqrt((tmpEdge.x1 - tmpEdge.x2) * (tmpEdge.x1 - tmpEdge.x2) + (tmpEdge.y1 - tmpEdge.y2) * (tmpEdge.y1 - tmpEdge.y2))
+                    })
+                    e.addWithUpdate(tmpEdge);
+                    e.addWithUpdate(tmpContent);
+                } else {
+                    e.set({
+                        'x2': objectCenter.x,
+                        'y2': objectCenter.y
+                    });
+                }
             })
 
         canvas.renderAll();
