@@ -105,6 +105,8 @@ function inputInit() {
     $("#GraphData").mouseleave(function () {
         // to init graph in create mode
         document.getElementById("create").checked = true;
+        document.querySelector('#colorPicker').jscolor.fromString('ffffff');
+        VertexColor = '#ffffff';
 
         var str = $('#GraphData').val();
         var arrStr = str.split('\n');
