@@ -1,5 +1,5 @@
 # graph-theory-drawer
-现阶段只用了 jQuery 和 fabric.js 。简单搞了个画布，css后期再搞吧 qwq。
+基本差不多了，就差hint里面的文字了
 
 
 
@@ -21,11 +21,21 @@ jscolor: https://jscolor.com/examples/
 
 
 
+### CSS Bulma
+
+https://bulma.io/documentation/
+
+
+
 
 ### 语法糖 
 
 #### prototype
 
 use prototype to create a new function (https://www.runoob.com/js/js-object-prototype.html)
+
+
+
+
 
 ...

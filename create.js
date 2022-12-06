@@ -44,7 +44,7 @@ function createInit() {
         }
         var idx = getVertexArrUnusedIndex();
         insertArr(VertexArr, idx);
-        canvas.addVertex(e.e.x - 30, e.e.y - 90, VertexColor, idx);
+        canvas.addVertex(e.e.x - 100 + document.documentElement.scrollLeft, e.e.y - 160 + document.documentElement.scrollTop, VertexColor, idx);
         canvas.refresh();
     });
 }

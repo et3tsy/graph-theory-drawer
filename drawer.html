@@ -5,6 +5,9 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Graph-Theory-Drawer</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css">
+    <link rel="stylesheet" type="text/css" href="./radio.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/fabric.js/3.4.0/fabric.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jscolor/2.5.1/jscolor.min.js"></script>
@@ -20,22 +23,91 @@
 
     <style>
         canvas {
-            border: 1px solid #ccc;
+            border: 2px solid #ccc;
         }
     </style>
 </head>
 
 <body>
-    <input class="switch" name="VertexOn" type="radio" id="create" /> <b>Create</b>
-    <input class="switch" name="VertexOn" type="radio" id="link" /> <b>Link</b>
-    <input class="switch" name="VertexOn" type="radio" id="delete" /> <b>Delete</b> <br>
-    <input id="colorPicker" class="jscolor {onFineChange:'updateColor()'}"></input><br>
-    <button id="directChange">direct/undirect edges</button><button id="download">导出</button><br>
-    <canvas id="c" width=600 height=300></canvas> <br>
-    <div>
-        <textarea rows="10" cols="75" id="GraphData"></textarea>
-    </div>
+    <section class="section">
+        <div class="container">
+            <div class="tile is-ancestor">
+                <div class="tile is-vertical is-7">
+                    <div class="tile">
+                        <div class="tile is-parent">
+                            <article class="tile is-child notification is-info">
+                                <p class="title">Graph Drawer</p>
+                                <div> <canvas id="c" width=400 height=300></canvas></div>
+                            </article>
+                        </div>
+                    </div>
+                    <div class="tile is-parent  is-vertical">
+                        <article class="tile is-child notification is-danger">
+                            <div class="content">
+                                <p class="title">Hint</p>
+                                <div class="card">
+                                    <div class="card-content">
+                                        <div class="content">
+                                            Here is TODO. Leave it for other group members.
+                                            Lorem ipsum leo risus, porta ac consectetur ac, vestibulum at eros. Donec id
+                                            elit non mi porta gravida at eget metus. Cum sociis natoque penatibus et
+                                            magnis.
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </article>
+                    </div>
+                </div>
+                <div class="tile is-parent is-vertical is-5">
+                    <article class="tile is-child notification is-success">
+                        <div class="content">
+                            <p class="title">Input</p>
+                            <div class="control">
+                                <textarea class="textarea"
+                                    placeholder="Input graph data here... For example:&#10 1 &#10 2 &#10 3 &#10 1 2 &#10 1 3"
+                                    rows="10" id="GraphData">
+                                </textarea>
+                            </div>
+                        </div>
+                    </article>
 
+                    <article class="tile is-child notification is-warning">
+                        <div class="content">
+                            <p class="title">Toolbox</p>
+                            <div class="card">
+                                <div class="card-content">
+                                    <div class="content">
+                                        <p class="subtitle">Mode</p>
+                                        <div class="radio">
+                                            <input id="create" name="radio" type="radio" checked="">
+                                            <label for="create" class="radio-label">create</label>
+                                        </div>
+                                        <div class="radio">
+                                            <input id="link" name="radio" type="radio" checked="">
+                                            <label for="link" class="radio-label">link</label>
+                                        </div>
+                                        <div class="radio">
+                                            <input id="delete" name="radio" type="radio" checked="">
+                                            <label for="delete" class="radio-label">delete</label>
+                                        </div>
+                                        <p class="subtitle">Color</p>
+                                        <input id="colorPicker"
+                                            class="jscolor input is-warning {onFineChange:'updateColor()'}">
+                                        </input>
+                                    </div>
+                                </div>
+                                <footer class="card-footer">
+                                    <a id="directChange" class="card-footer-item">directed/undirected edges</a>
+                                    <a id="download" class="card-footer-item">download</a>
+                                </footer>
+                            </div>
+                        </div>
+                    </article>
+                </div>
+            </div>
+        </div>
+    </section>
 </body>
 
 <script>
@@ -48,10 +120,14 @@
     var EdgeArr = [];                       // the edges array, recording pairs of [fromVertex, toVertex]
     var isDirect = 1;                       // if true, edges have arrows, representing direct edges
 
-    var canvasWidth = 600;                                                                // the width of canvas
-    var canvasHeight = 300;                                                               // the height of canvas
-    var canvas = new fabric.Canvas('c', { width: canvasWidth, height: canvasHeight });    // the object of canvas
-    canvas.selection = false                                                              // forbid selection
+    var canvasWidth = $(window).get(0).innerWidth / 2.2;                  // the width of canvas
+    var canvasHeight = $(window).get(0).innerHeight / 2.2;                  // the height of canvas
+    var canvas = new fabric.Canvas('c', {                                 // the object of canvas
+        backgroundColor: "#fff",
+        selection: false,
+        width: canvasWidth,
+        height: canvasHeight,
+    });
 
     // the default format of a vertex
     var defaultVertex = {
@@ -114,6 +190,18 @@
         isDirect = 1 - isDirect;
         canvas.renderAll();
     });
+
+    // auto resize
+    $(window).resize(function () {
+        canvas.setWidth($(window).get(0).innerWidth / 2.2);
+        canvas.setHeight($(window).get(0).innerHeight / 2.2);
+    });
+
+    $(document).ready(function () {
+        $("#directChange").css({ "text-decoration": "none" })
+        $("#download").css({ "text-decoration": "none" })
+
+    })
 
 </script>
 

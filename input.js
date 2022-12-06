@@ -35,7 +35,7 @@ function inputInit() {
         for (var i = 0; i < edgeAdd.length; i++) {
             var obj1 = canvas.getObjectByName('vertex' + edgeAdd[i][0]);
             var obj2 = canvas.getObjectByName('vertex' + edgeAdd[i][1]);
-            if(edgeAdd[i].length == 2)
+            if (edgeAdd[i].length == 2)
                 canvas.AddLine(obj1, obj2);
             else {
                 canvas.AddWeightedLine(obj1, obj2, edgeAdd[i][2]);
@@ -182,9 +182,9 @@ function inputInit() {
         newEdge.sort(function (a, b) {
             if (a[0] != b[0]) {
                 return a[0] - b[0];
-            } else if(a[1] != b[1]) {
+            } else if (a[1] != b[1]) {
                 return a[1] - b[1];
-            } else if(b.length != a.length) {
+            } else if (b.length != a.length) {
                 return a.length - b.length;
             } else {
                 return 0;
