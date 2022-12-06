@@ -34,8 +34,3 @@ https://bulma.io/documentation/
 
 use prototype to create a new function (https://www.runoob.com/js/js-object-prototype.html)
 
-
-
-
-
-...
