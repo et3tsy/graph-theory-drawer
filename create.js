@@ -44,7 +44,8 @@ function createInit() {
         }
         var idx = getVertexArrUnusedIndex();
         insertArr(VertexArr, idx);
-        canvas.addVertex(e.e.x - 100 + document.documentElement.scrollLeft, e.e.y - 160 + document.documentElement.scrollTop, VertexColor, idx);
+        console.log();
+        canvas.addVertex(e.e.x + document.documentElement.scrollLeft - $("#graph-drawer").offset().left - 30, e.e.y + document.documentElement.scrollTop - $("#graph-drawer").offset().top - 90, VertexColor, idx);
         canvas.refresh();
     });
 }

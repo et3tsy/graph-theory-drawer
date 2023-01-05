@@ -35,7 +35,7 @@
                 <div class="tile is-vertical is-7">
                     <div class="tile">
                         <div class="tile is-parent">
-                            <article class="tile is-child notification is-info">
+                            <article class="tile is-child notification is-info" id="graph-drawer">
                                 <p class="title">Graph Drawer</p>
                                 <div> <canvas id="c" width=400 height=300></canvas></div>
                             </article>
@@ -126,9 +126,9 @@
     var EdgeArr = [];                       // the edges array, recording pairs of [fromVertex, toVertex]
     var isDirect = 1;                       // if true, edges have arrows, representing direct edges
 
-    var canvasWidth = $(window).get(0).innerWidth / 2.2;                  // the width of canvas
-    var canvasHeight = $(window).get(0).innerHeight / 2.2;                  // the height of canvas
-    var canvas = new fabric.Canvas('c', {                                 // the object of canvas
+    var canvasWidth = $("#graph-drawer").outerWidth() / 1.1;                  // the width of canvas
+    var canvasHeight = $("#graph-drawer").outerHeight() / 1.3;                // the height of canvas
+    var canvas = new fabric.Canvas('c', {                                     // the object of canvas
         backgroundColor: "#fff",
         selection: false,
         width: canvasWidth,
@@ -199,14 +199,13 @@
 
     // auto resize
     $(window).resize(function () {
-        canvas.setWidth($(window).get(0).innerWidth / 2.2);
-        canvas.setHeight($(window).get(0).innerHeight / 2.2);
+        canvas.setWidth($("#graph-drawer").outerWidth() / 1.1);
+        canvas.setHeight($("#graph-drawer").outerHeight() / 1.3);
     });
 
     $(document).ready(function () {
         $("#directChange").css({ "text-decoration": "none" })
         $("#download").css({ "text-decoration": "none" })
-
     })
 
 </script>
