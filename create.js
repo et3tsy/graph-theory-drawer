@@ -35,6 +35,10 @@ function createInit() {
         // set default color
         document.querySelector('#colorPicker').jscolor.fromString('ffffff');
         VertexColor = '#ffffff';
+
+        // disable the directed/undirected buttons
+        $("#direct").attr("disabled", true);
+        $("#undirect").attr("disabled", true);
     });
 
     // if not click on existing objects, create a new vertex 

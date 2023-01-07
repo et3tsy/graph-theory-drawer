@@ -38,7 +38,7 @@ function edgeInit() {
                 // draw the triangle of the arrow
                 ctx.rotate(angle);
                 ctx.beginPath();
-                ctx.moveTo(-VertexRadius * isDirect - 25 * (1 - isDirect), 0);
+                ctx.moveTo(-VertexRadius * this.directed - 25 * (1 - this.directed), 0);
                 ctx.lineTo(-25, 6);
                 ctx.lineTo(-25, -6);
                 ctx.closePath();

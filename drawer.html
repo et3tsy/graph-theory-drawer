@@ -52,15 +52,21 @@
                                             corresponding graph will be generated.<br> Also, you can create your graph
                                             directly. In <b>create</b> mode, if you click on the blank space, a new
                                             vertex will be created. In <b>link</b> mode, select two vertexes to create
-                                            an edge. In <b>delete</b> mode, select a vertex to remove it.<br> Finally,
-                                            you
-                                            can
-                                            pick up your favorite color in <b>Color</b> and save the graph as a
-                                            <b>png</b> by
-                                            <b>download</b>.
+                                            an edge, and with the options in <b>Arrow</b>, directed or not can be
+                                            selected.
+                                            In <b>delete</b> mode, select a vertex to remove it.<br>
+                                            Also, you can pick up your favorite color in <b>Color</b>.
+                                            Finally, if you want to save your graph created, please click the button
+                                            below, and save the
+                                            graph as a
+                                            <b>png</b>.
                                         </div>
                                     </div>
+                                    <footer class="card-footer">
+                                        <a id="download" class="card-footer-item">download as a png</a>
+                                    </footer>
                                 </div>
+
                             </div>
                         </article>
                     </div>
@@ -90,23 +96,32 @@
                                             <label for="create" class="radio-label">create</label>
                                         </div>
                                         <div class="radio">
-                                            <input id="link" name="radio" type="radio" checked="">
+                                            <input id="link" name="radio" type="radio">
                                             <label for="link" class="radio-label">link</label>
                                         </div>
                                         <div class="radio">
-                                            <input id="delete" name="radio" type="radio" checked="">
+                                            <input id="delete" name="radio" type="radio">
                                             <label for="delete" class="radio-label">delete</label>
                                         </div>
+                                        <p class="subtitle"></p>
+                                        <p class="subtitle">Arrow</p>
+                                        <div class="radio">
+                                            <input id="direct" name="radio2" type="radio" checked="" disabled>
+                                            <label for="direct" class="radio-label">directed</label>
+                                        </div>
+                                        <div class="radio">
+                                            <input id="undirect" name="radio2" type="radio" disabled>
+                                            <label for="undirect" class="radio-label">undirected</label>
+                                        </div>
+
+                                        <p class="subtitle"></p>
                                         <p class="subtitle">Color</p>
                                         <input id="colorPicker"
                                             class="input is-warning jscolor {onFineChange:'updateColor()'}">
                                         </input>
                                     </div>
                                 </div>
-                                <footer class="card-footer">
-                                    <a id="directChange" class="card-footer-item">directed/undirected edges</a>
-                                    <a id="download" class="card-footer-item">download</a>
-                                </footer>
+
                             </div>
                         </div>
                     </article>
@@ -161,6 +176,7 @@
         originX: 'center',
         originY: 'center',
         weight: "",
+        directed: 0,
         selectable: false,
         hasControls: false,
         hasBorders: false,
@@ -207,6 +223,8 @@
     $(document).ready(function () {
         $("#directChange").css({ "text-decoration": "none" })
         $("#download").css({ "text-decoration": "none" })
+        $("#direct").attr("disabled", true);
+        $("#undirect").attr("disabled", true);
     })
 
 </script>

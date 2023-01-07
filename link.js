@@ -6,6 +6,19 @@ function linkInit() {
         // set default color
         defaultLine.stroke = '#000000';
         document.querySelector('#colorPicker').jscolor.fromString('000000');
+
+        // enable the directed/undirected buttons
+        $("#direct").removeAttr("disabled").removeProp("disabled");
+        $("#undirect").removeAttr("disabled").removeProp("disabled");
+        isDirect = document.getElementById("direct").checked;
+    });
+
+    // the edge is directed or not 
+    $("#direct").click(function () {
+        isDirect = true;
+    });
+    $("#undirect").click(function () {
+        isDirect = false;
     });
 
     // when linking two vertexs, and the first one is chosen, activate the FocusLine
