@@ -13,7 +13,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jscolor/2.5.1/jscolor.min.js"></script>
     <script type="text/javascript" src="./vertex.js"></script>
     <script type="text/javascript" src="./create.js"></script>
-    <script type="text/javascript" src="./fabric.js"></script>
+    <script type="text/javascript" src="./draw.js"></script>
     <script type="text/javascript" src="./move.js"></script>
     <script type="text/javascript" src="./link.js"></script>
     <script type="text/javascript" src="./delete.js"></script>
@@ -120,7 +120,7 @@
     var VertexColor = '#ffffff';            // the color of vertexs
     var VertexRadius = 16;                  // the radius of vertexs
     var padding = 10;                       // the padding to prevent objects to reach the edge of the canvas
-    var weightPadding = 15;                 // the padding from edge to weight label
+    var weightPadding = 16;                 // the padding from edge to weight label
     var startVertex = null;                 // when linking two vertexs, record the first one
     var VertexArr = [];                     // the vertex array, recording what indexs are used
     var EdgeArr = [];                       // the edges array, recording pairs of [fromVertex, toVertex]
