@@ -106,11 +106,11 @@
                                         <p class="subtitle"></p>
                                         <p class="subtitle">Arrow</p>
                                         <div class="radio">
-                                            <input id="direct" name="radio2" type="radio" checked="" disabled>
+                                            <input id="direct" name="radio2" type="radio" checked="">
                                             <label for="direct" class="radio-label">directed</label>
                                         </div>
                                         <div class="radio">
-                                            <input id="undirect" name="radio2" type="radio" disabled>
+                                            <input id="undirect" name="radio2" type="radio">
                                             <label for="undirect" class="radio-label">undirected</label>
                                         </div>
 
@@ -223,8 +223,8 @@
     $(document).ready(function () {
         $("#directChange").css({ "text-decoration": "none" })
         $("#download").css({ "text-decoration": "none" })
-        $("#direct").attr("disabled", true);
-        $("#undirect").attr("disabled", true);
+        // $("#direct").attr("disabled", true);
+        // $("#undirect").attr("disabled", true);
     })
 
 </script>
