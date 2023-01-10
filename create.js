@@ -3,7 +3,6 @@ function getRandomPosition() {
     for (var i = 0; i < 100; i++) {
         var x = Math.random() * (canvasWidth - VertexRadius - 2 * padding);
         var y = Math.random() * (canvasHeight - VertexRadius - 2 * padding);
-
         var flag = true;
         for (var j = 0; j < VertexArr.length; j++) {
             var obj = canvas.getObjectByName('vertex' + VertexArr[j]);
@@ -35,10 +34,6 @@ function createInit() {
         // set default color
         document.querySelector('#colorPicker').jscolor.fromString('ffffff');
         VertexColor = '#ffffff';
-
-        // disable the directed/undirected buttons
-        $("#direct").attr("disabled", true);
-        $("#undirect").attr("disabled", true);
     });
 
     // if not click on existing objects, create a new vertex 
@@ -48,7 +43,6 @@ function createInit() {
         }
         var idx = getVertexArrUnusedIndex();
         insertArr(VertexArr, idx);
-        console.log();
         canvas.addVertex(e.e.x + document.documentElement.scrollLeft - $("#graph-drawer").offset().left - 30, e.e.y + document.documentElement.scrollTop - $("#graph-drawer").offset().top - 90, VertexColor, idx);
         canvas.refresh();
     });

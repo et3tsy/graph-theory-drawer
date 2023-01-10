@@ -4,10 +4,6 @@ function deleteInit() {
         canvas.discardActiveObject();
         canvas.remove(canvas.getObjectByName('lineFocus'));
         startVertex = null;
-
-        // disable the directed/undirected buttons
-        $("#direct").attr("disabled", true);
-        $("#undirect").attr("disabled", true);
     });
 
 

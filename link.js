@@ -6,11 +6,6 @@ function linkInit() {
         // set default color
         defaultLine.stroke = '#000000';
         document.querySelector('#colorPicker').jscolor.fromString('000000');
-
-        // enable the directed/undirected buttons
-        $("#direct").removeAttr("disabled").removeProp("disabled");
-        $("#undirect").removeAttr("disabled").removeProp("disabled");
-        isDirect = document.getElementById("direct").checked;
     });
 
     // the edge is directed or not 

@@ -117,8 +117,6 @@ function inputInit() {
     $("#GraphData").mouseleave(function () {
         // to init graph in create mode
         document.getElementById("create").checked = true;
-        $("#direct").attr("disabled", true);
-        $("#undirect").attr("disabled", true);
         document.querySelector('#colorPicker').jscolor.fromString('ffffff');
         VertexColor = '#ffffff';
 

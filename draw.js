@@ -101,7 +101,6 @@ function fabricInit() {
             defaultLine.directed = isDirect;
             var line = new fabric.Edge([from.x, from.y, to.x, to.y], defaultLine);
             line.name = "edge" + fromObject.name + toObject.name;
-
             canvas.add(line);
             fromObject.from.push(line);
             toObject.to.push(line);
@@ -120,6 +119,7 @@ function fabricInit() {
 
         if (from.x != to.x || from.y != to.y) {
             defaultLine.weight = "" + weight;
+            defaultLine.directed = isDirect;
             var line = new fabric.Edge([from.x, from.y, to.x, to.y], defaultLine);
             line.name = "edge" + fromObject.name + toObject.name + "weight" + weight;
             canvas.add(line);
