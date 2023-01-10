@@ -21,7 +21,12 @@ function inputInit() {
     function delOldEdge(edgeDel) {
         for (var i = 0; i < edgeDel.length; i++) {
             //var from
-            var line = canvas.getObjectByName('edge' + 'vertex' + edgeDel[i][0] + 'vertex' + edgeDel[i][1]);
+
+            var line;
+            if(edgeDel[i].length == 2)
+                line = canvas.getObjectByName('edge' + 'vertex' + edgeDel[i][0] + 'vertex' + edgeDel[i][1]);
+            else
+                line = canvas.getObjectByName('edge' + 'vertex' + edgeDel[i][0] + 'vertex' + edgeDel[i][1] + 'weight' + edgeDel[i][2]);
 
             if (line !== null) {
                 canvas.removeLine(line);
