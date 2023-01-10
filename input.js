@@ -23,7 +23,7 @@ function inputInit() {
             //var from
 
             var line;
-            if(edgeDel[i].length == 2)
+            if (edgeDel[i].length == 2)
                 line = canvas.getObjectByName('edge' + 'vertex' + edgeDel[i][0] + 'vertex' + edgeDel[i][1]);
             else
                 line = canvas.getObjectByName('edge' + 'vertex' + edgeDel[i][0] + 'vertex' + edgeDel[i][1] + 'weight' + edgeDel[i][2]);
@@ -117,6 +117,8 @@ function inputInit() {
     $("#GraphData").mouseleave(function () {
         // to init graph in create mode
         document.getElementById("create").checked = true;
+        $("#direct").attr("disabled", true);
+        $("#undirect").attr("disabled", true);
         document.querySelector('#colorPicker').jscolor.fromString('ffffff');
         VertexColor = '#ffffff';
 
