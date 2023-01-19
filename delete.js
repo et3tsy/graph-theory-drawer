@@ -23,5 +23,6 @@ function deleteInit() {
 
         }
         canvas.refresh();
+        storeInput();
     });
 }

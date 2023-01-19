@@ -20,6 +20,7 @@
     <script type="text/javascript" src="./download.js"></script>
     <script type="text/javascript" src="./edge.js"></script>
     <script type="text/javascript" src="./input.js"></script>
+    <script type="text/javascript" src="./save.js"></script>
 
     <style>
         canvas {
@@ -192,14 +193,15 @@
     $("#directChange").css({ "text-decoration": "none" })
     $("#download").css({ "text-decoration": "none" })
 
-    edgeInit();
     fabricInit();
+    edgeInit();
     createInit();
     moveInit();
     linkInit();
     deleteInit();
     downloadInit();
     inputInit();
+    saveInit();
 
     // set color for vertexs or edges
     function updateColor() {

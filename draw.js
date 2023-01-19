@@ -108,7 +108,6 @@ function fabricInit() {
             // sendToBack() is used to get an object to the bottom
             line.sendToBack();
         }
-        startVertex = null;
         canvas.discardActiveObject();
     }
 
@@ -129,7 +128,6 @@ function fabricInit() {
             // sendToBack() is used to get an object to the bottom
             line.sendToBack();
         }
-        startVertex = null;
         canvas.discardActiveObject();
     }
 

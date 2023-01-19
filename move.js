@@ -1,29 +1,3 @@
-// when linking two vertexs, draw a line, called lineFocus, 
-// between the mouse pointer and the start vertex
-function createFocusLine() {
-    var pointer = canvas.getActiveObject();
-    var points = [pointer.left + VertexRadius, pointer.top + VertexRadius, pointer.left + VertexRadius, pointer.top + VertexRadius];
-
-    lineFocus = new fabric.Line(points, {
-        strokeWidth: 5,
-        opacity: 0.1,
-        fill: '#313131',
-        stroke: '#313131',
-        originX: 'center',
-        originY: 'center',
-        selectable: false,
-        hasControls: false,
-        hasBorders: false,
-        evented: false,
-        targetFindTolerance: true,
-        name: 'lineFocus',
-    });
-
-    canvas.add(lineFocus);
-    lineFocus.sendToBack();
-    canvas.renderAll();
-}
-
 function moveInit() {
     // prevent objects to reach the edge of the canvas
     canvas.on('object:moving', function (e) {
@@ -86,7 +60,7 @@ function moveInit() {
         if (object.from)
             object.from.forEach(function (e) {
                 // when edge has weight
-                if(e.type === "group") {
+                if (e.type === "group") {
                     tmpEdge = e.getObjects("Edge")[0];
                     tmpContent = e.getObjects("text")[0];
                     e.remove(tmpEdge);
@@ -96,8 +70,8 @@ function moveInit() {
                         'y1': objectCenter.y
                     })
                     tmpContent.set({
-                        left: (tmpEdge.x1 + tmpEdge.x2)/2 - weightPadding * (tmpEdge.y1 - tmpEdge.y2) / Math.sqrt((tmpEdge.x1 - tmpEdge.x2) * (tmpEdge.x1 - tmpEdge.x2) + (tmpEdge.y1 - tmpEdge.y2) * (tmpEdge.y1 - tmpEdge.y2)),
-                        top: (tmpEdge.y1 + tmpEdge.y2)/2 + weightPadding * (tmpEdge.x1 - tmpEdge.x2) / Math.sqrt((tmpEdge.x1 - tmpEdge.x2) * (tmpEdge.x1 - tmpEdge.x2) + (tmpEdge.y1 - tmpEdge.y2) * (tmpEdge.y1 - tmpEdge.y2))
+                        left: (tmpEdge.x1 + tmpEdge.x2) / 2 - weightPadding * (tmpEdge.y1 - tmpEdge.y2) / Math.sqrt((tmpEdge.x1 - tmpEdge.x2) * (tmpEdge.x1 - tmpEdge.x2) + (tmpEdge.y1 - tmpEdge.y2) * (tmpEdge.y1 - tmpEdge.y2)),
+                        top: (tmpEdge.y1 + tmpEdge.y2) / 2 + weightPadding * (tmpEdge.x1 - tmpEdge.x2) / Math.sqrt((tmpEdge.x1 - tmpEdge.x2) * (tmpEdge.x1 - tmpEdge.x2) + (tmpEdge.y1 - tmpEdge.y2) * (tmpEdge.y1 - tmpEdge.y2))
                     })
                     e.addWithUpdate(tmpEdge);
                     e.addWithUpdate(tmpContent);
@@ -111,7 +85,7 @@ function moveInit() {
         if (object.to)
             object.to.forEach(function (e) {
                 // when edge has weight
-                if(e.type === "group") {
+                if (e.type === "group") {
                     tmpEdge = e.getObjects("Edge")[0];
                     tmpContent = e.getObjects("text")[0];
                     e.remove(tmpEdge);
@@ -121,8 +95,8 @@ function moveInit() {
                         'y2': objectCenter.y
                     })
                     tmpContent.set({
-                        left: (tmpEdge.x1 + tmpEdge.x2)/2 - weightPadding * (tmpEdge.y1 - tmpEdge.y2) / Math.sqrt((tmpEdge.x1 - tmpEdge.x2) * (tmpEdge.x1 - tmpEdge.x2) + (tmpEdge.y1 - tmpEdge.y2) * (tmpEdge.y1 - tmpEdge.y2)),
-                        top: (tmpEdge.y1 + tmpEdge.y2)/2 + weightPadding * (tmpEdge.x1 - tmpEdge.x2) / Math.sqrt((tmpEdge.x1 - tmpEdge.x2) * (tmpEdge.x1 - tmpEdge.x2) + (tmpEdge.y1 - tmpEdge.y2) * (tmpEdge.y1 - tmpEdge.y2))
+                        left: (tmpEdge.x1 + tmpEdge.x2) / 2 - weightPadding * (tmpEdge.y1 - tmpEdge.y2) / Math.sqrt((tmpEdge.x1 - tmpEdge.x2) * (tmpEdge.x1 - tmpEdge.x2) + (tmpEdge.y1 - tmpEdge.y2) * (tmpEdge.y1 - tmpEdge.y2)),
+                        top: (tmpEdge.y1 + tmpEdge.y2) / 2 + weightPadding * (tmpEdge.x1 - tmpEdge.x2) / Math.sqrt((tmpEdge.x1 - tmpEdge.x2) * (tmpEdge.x1 - tmpEdge.x2) + (tmpEdge.y1 - tmpEdge.y2) * (tmpEdge.y1 - tmpEdge.y2))
                     })
                     e.addWithUpdate(tmpEdge);
                     e.addWithUpdate(tmpContent);
@@ -133,8 +107,33 @@ function moveInit() {
                     });
                 }
             })
-
         canvas.renderAll();
+        storeVertex(parseInt(object.name.substring(6)), objectCenter.x - VertexRadius, objectCenter.y - VertexRadius, null);
+    });
+}
+
+// when linking two vertexs, draw a line, called lineFocus, 
+// between the mouse pointer and the start vertex
+function createFocusLine() {
+    var pointer = canvas.getActiveObject();
+    var points = [pointer.left + VertexRadius, pointer.top + VertexRadius, pointer.left + VertexRadius, pointer.top + VertexRadius];
+
+    lineFocus = new fabric.Line(points, {
+        strokeWidth: 5,
+        opacity: 0.1,
+        fill: '#313131',
+        stroke: '#313131',
+        originX: 'center',
+        originY: 'center',
+        selectable: false,
+        hasControls: false,
+        hasBorders: false,
+        evented: false,
+        targetFindTolerance: true,
+        name: 'lineFocus',
     });
 
+    canvas.add(lineFocus);
+    lineFocus.sendToBack();
+    canvas.renderAll();
 }

@@ -41,9 +41,15 @@ function createInit() {
         if (document.getElementById("create").checked !== true || e.target) {
             return;
         }
+        var x = e.e.x + document.documentElement.scrollLeft - $("#graph-drawer").offset().left - 30;
+        var y = e.e.y + document.documentElement.scrollTop - $("#graph-drawer").offset().top - 90;
         var idx = getVertexArrUnusedIndex();
         insertArr(VertexArr, idx);
-        canvas.addVertex(e.e.x + document.documentElement.scrollLeft - $("#graph-drawer").offset().left - 30, e.e.y + document.documentElement.scrollTop - $("#graph-drawer").offset().top - 90, VertexColor, idx);
+
+        // draw and save
+        canvas.addVertex(x, y, VertexColor, idx);
         canvas.refresh();
+        storeVertex(idx, x, y, VertexColor);
+        storeInput();
     });
 }

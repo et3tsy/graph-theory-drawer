@@ -33,9 +33,14 @@ function linkInit() {
         // remove lineFocus when the second vertex is chosen
         canvas.remove(canvas.getObjectByName('lineFocus'));
 
-        // add the line
+        // add the line and save
         EdgeArr.push([parseInt(startVertex.name.substring(6)), parseInt(e.target.name.substring(6))])
-        canvas.refresh();
         canvas.AddLine(startVertex, e.target);
+        canvas.refresh();
+        storeEdge(parseInt(startVertex.name.substring(6)), parseInt(e.target.name.substring(6)), $('#colorPicker').val(), isDirect);
+        storeInput();
+
+        // reset the startVertex
+        startVertex = null;
     });
 }
