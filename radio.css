@@ -71,7 +71,17 @@ body {
     text-align: center;
     width: calc(100% - 20px);
 }
-
-.powered-by{
+.with-love {
+    color: #808080;
     display: inline-block;
+    margin: 0 5px;
+}
+
+.powered-by,
+.source-on{
+    display: inline-block;
+}
+
+.post-meta-divider {
+    margin: 0 0.5em;
 }
