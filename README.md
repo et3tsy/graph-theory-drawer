@@ -1,5 +1,6 @@
 # graph-theory-drawer
-基本差不多了，就差hint里面的文字了
+
+这是一个简单的图论画图软件，能基本满足画图需求。
 
 
 
@@ -9,15 +10,15 @@ https://www.runoob.com/jquery/jquery-tutorial.html
 
 
 
-### fabric.js 画布
+### fabric.js
 
-fabric.js: http://fabricjs.com/articles/
+http://fabricjs.com/articles/
 
 
 
-### jscolor 拾色器
+### jscolor
 
-jscolor: https://jscolor.com/examples/
+https://jscolor.com/examples/
 
 
 
@@ -25,12 +26,4 @@ jscolor: https://jscolor.com/examples/
 
 https://bulma.io/documentation/
 
-
-
-
-### 语法糖 
-
-#### prototype
-
-use prototype to create a new function (https://www.runoob.com/js/js-object-prototype.html)
 
