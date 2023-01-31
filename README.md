@@ -4,26 +4,26 @@
 
 
 
-### jQuery 
+## jQuery 
 
-https://www.runoob.com/jquery/jquery-tutorial.html
-
-
-
-### fabric.js
-
-http://fabricjs.com/articles/
+https://jquery.com/
 
 
 
-### jscolor
+## fabric.js
 
-https://jscolor.com/examples/
+http://fabricjs.com
 
 
 
-### CSS Bulma
+## jscolor
 
-https://bulma.io/documentation/
+https://jscolor.com
+
+
+
+## CSS Bulma
+
+https://bulma.io/
 
 
